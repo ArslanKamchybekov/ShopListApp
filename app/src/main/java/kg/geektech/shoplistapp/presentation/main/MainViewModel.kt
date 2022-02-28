@@ -1,7 +1,6 @@
-package kg.geektech.shoplistapp.presentation
+package kg.geektech.shoplistapp.presentation.main
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kg.geektech.shoplistapp.data.ShopListRepositoryImpl
 import kg.geektech.shoplistapp.domain.*

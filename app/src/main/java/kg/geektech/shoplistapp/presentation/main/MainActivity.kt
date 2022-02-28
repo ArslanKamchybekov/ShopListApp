@@ -1,4 +1,4 @@
-package kg.geektech.shoplistapp.presentation
+package kg.geektech.shoplistapp.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.geektech.shoplistapp.R
 import kg.geektech.shoplistapp.databinding.ActivityMainBinding
 import kg.geektech.shoplistapp.domain.ShopItem
+import java.lang.RuntimeException
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,13 +18,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initListeners()
-        initObservers()
+//        initListeners()
+//        initObservers()
     }
 
     private fun initObservers() {
         viewModel.getShopList().observe(this) {
-            Log.e("Tag", "getShopLiveData : $it")
+            Log.e("TAG", "getShopLiveData : $it")
         }
     }
 
@@ -33,9 +34,9 @@ class MainActivity : AppCompatActivity() {
             if (text.isNotEmpty()) {
                 try {
                     viewModel.editShopItem(text.toInt())
-                    Log.d("edit", "EditShopItem")
+                    Log.d("TAG", "EditShopItem")
                 } catch (e: Exception) {
-                    Log.d("edit", "e: $e")
+                    Log.d("TAG", "e: $e")
                 }
             }
         }
@@ -44,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             if (text.isNotEmpty()) {
                 try {
                     val shopItem = viewModel.getShopItem(text.toInt())
-                    Log.d("get", "GetShopItem: $shopItem")
-                } catch (e: Exception) {
-                    Log.d("get", "e: $e")
+                    Log.d("TAG", "GetShopItem: $shopItem")
+                } catch (e: RuntimeException) {
+                    Log.d("TAG", "e: $e")
                 }
             }
         }
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addItem(): ShopItem {
-        Log.e("Tag", "addShopItem")
+        Log.e("TAG", "addShopItem")
         val text = binding.etId.text.toString()
         return if (text.isNotEmpty()) {
             ShopItem("potato", 2, false)
