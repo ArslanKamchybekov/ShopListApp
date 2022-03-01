@@ -17,13 +17,13 @@ class TasksAdapter(private val longClick: (ShopItem) -> Unit) :
         return if (viewType == Constants.DISABLE) {
             val binding =
                 ShopListDisableBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            ViewHolderFirst(binding) {
+            ViewHolderDisable(binding) {
                 longClick(currentList[it])
             }
         } else {
             val binding =
                 ShopListEnableBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            ViewHolderSecond(binding) {
+            ViewHolderEnable(binding) {
                 longClick(currentList[it])
             }
         }
@@ -31,10 +31,10 @@ class TasksAdapter(private val longClick: (ShopItem) -> Unit) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder.itemViewType == Constants.DISABLE) {
-            val viewHolderDisable = holder as ViewHolderFirst
+            val viewHolderDisable = holder as ViewHolderDisable
             viewHolderDisable.onBind(getItem(position))
         } else {
-            val viewHolderEnable = holder as ViewHolderSecond
+            val viewHolderEnable = holder as ViewHolderEnable
             viewHolderEnable.onBind(getItem(position))
         }
     }
@@ -47,7 +47,7 @@ class TasksAdapter(private val longClick: (ShopItem) -> Unit) :
         }
     }
 
-    class ViewHolderFirst(
+    class ViewHolderDisable(
         private val binding: ShopListDisableBinding,
         function: (Int) -> Unit
     ) :
@@ -66,7 +66,7 @@ class TasksAdapter(private val longClick: (ShopItem) -> Unit) :
         }
     }
 
-    class ViewHolderSecond(
+    class ViewHolderEnable(
         private val binding: ShopListEnableBinding,
         function: (Int) -> Unit
     ) :
