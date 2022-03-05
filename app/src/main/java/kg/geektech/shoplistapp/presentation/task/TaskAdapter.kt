@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kg.geektech.shoplistapp.databinding.ShopListDisableBinding
-import kg.geektech.shoplistapp.domain.ShopItem
-import kg.geektech.shoplistapp.presentation.ShopListDiffCallback
+import kg.geektech.shoplistapp.domain.models.ShopItem
+import kg.geektech.shoplistapp.callbacks.ShopListDiffCallback
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 

@@ -1,7 +1,7 @@
-package kg.geektech.shoplistapp.presentation
+package kg.geektech.shoplistapp.callbacks
 
 import androidx.recyclerview.widget.DiffUtil
-import kg.geektech.shoplistapp.domain.ShopItem
+import kg.geektech.shoplistapp.domain.models.ShopItem
 
 class ShopItemDiffCallback : DiffUtil.ItemCallback<ShopItem>() {
     override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean =

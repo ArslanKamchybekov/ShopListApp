@@ -1,6 +1,7 @@
 package kg.geektech.shoplistapp.domain
 
 import androidx.lifecycle.LiveData
+import kg.geektech.shoplistapp.domain.models.ShopItem
 
 interface ShopListRepository {
 
@@ -10,7 +11,7 @@ interface ShopListRepository {
 
     fun deleteShopItem(shopItem: ShopItem)
 
-    fun editShopItem(id: Int)
+    fun editShopItem(shopItem: ShopItem)
 
     fun getShopItem(id: Int): ShopItem
 }

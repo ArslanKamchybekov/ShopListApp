@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.geektech.shoplistapp.R
 import kg.geektech.shoplistapp.databinding.ActivityMainBinding
-import kg.geektech.shoplistapp.domain.ShopItem
-import java.lang.RuntimeException
+import kg.geektech.shoplistapp.domain.models.ShopItem
+import kg.geektech.shoplistapp.presentation.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,44 +18,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        initListeners()
-//        initObservers()
     }
 
     private fun initObservers() {
         viewModel.getShopList().observe(this) {
             Log.e("TAG", "getShopLiveData : $it")
-        }
-    }
-
-    private fun initListeners() {
-        binding.btnEdit.setOnClickListener {
-            val text = binding.etId.text.toString()
-            if (text.isNotEmpty()) {
-                try {
-                    viewModel.editShopItem(text.toInt())
-                    Log.d("TAG", "EditShopItem")
-                } catch (e: Exception) {
-                    Log.d("TAG", "e: $e")
-                }
-            }
-        }
-        binding.btnGetItem.setOnClickListener {
-            val text = binding.etId.text.toString()
-            if (text.isNotEmpty()) {
-                try {
-                    val shopItem = viewModel.getShopItem(text.toInt())
-                    Log.d("TAG", "GetShopItem: $shopItem")
-                } catch (e: RuntimeException) {
-                    Log.d("TAG", "e: $e")
-                }
-            }
-        }
-        binding.btnCreate.setOnClickListener {
-            viewModel.addShopItem(addItem())
-        }
-        binding.btnDelete.setOnClickListener {
-            viewModel.deleteItem(ShopItem("potato", 2, false, binding.etId.text.toString().toInt()))
         }
     }
 

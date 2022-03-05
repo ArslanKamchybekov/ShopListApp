@@ -1,9 +1,10 @@
-package kg.geektech.shoplistapp.presentation.main
+package kg.geektech.shoplistapp.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import kg.geektech.shoplistapp.data.ShopListRepositoryImpl
+import kg.geektech.shoplistapp.data.repositories.ShopListRepositoryImpl
 import kg.geektech.shoplistapp.domain.*
+import kg.geektech.shoplistapp.domain.models.ShopItem
 
 class MainViewModel : ViewModel() {
 
@@ -28,8 +29,9 @@ class MainViewModel : ViewModel() {
         deleteShopItemUseCase.deleteShopItem(shopItem)
     }
 
-    fun editShopItem(id: Int) {
-        editShopItemUseCase.editShopItem(id)
+    fun editShopItem(shopItem: ShopItem) {
+        val newShopItem = shopItem.copy(enabled = !shopItem.enabled)
+        editShopItemUseCase.editShopItem(newShopItem)
     }
 
     fun getShopItem(id: Int): ShopItem {
