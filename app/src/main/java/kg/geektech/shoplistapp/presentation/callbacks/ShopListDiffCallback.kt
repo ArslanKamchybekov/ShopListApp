@@ -1,4 +1,4 @@
-package kg.geektech.shoplistapp.callbacks
+package kg.geektech.shoplistapp.presentation.callbacks
 
 import androidx.recyclerview.widget.DiffUtil
 import kg.geektech.shoplistapp.domain.models.ShopItem

@@ -12,7 +12,7 @@ class App : Application() {
             this,
             AppDataBase::class.java,
             "dataBase"
-        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().build()
     }
     companion object{
         lateinit var dataBase : AppDataBase

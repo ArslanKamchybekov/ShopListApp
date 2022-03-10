@@ -9,14 +9,15 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.geektech.shoplistapp.R
 import kg.geektech.shoplistapp.databinding.ActivityTaskBinding
-import kg.geektech.shoplistapp.presentation.detail.DetailActivity
 import kg.geektech.shoplistapp.presentation.MainViewModel
-import java.lang.RuntimeException
+import kg.geektech.shoplistapp.presentation.detail.DetailActivity
+import kotlinx.coroutines.launch
 
 class TaskActivity : AppCompatActivity(R.layout.activity_task) {
 
@@ -42,15 +43,18 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.toInt()?.let {
                     try {
-                        Toast.makeText(
-                            this@TaskActivity,
-                            "Info: " + viewModel.getShopItem(it).name + " id:" + viewModel.getShopItem(
-                                it
-                            ).id + " count: " + viewModel.getShopItem(it).count + " status: " + viewModel.getShopItem(
-                                it
-                            ).enabled,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        lifecycleScope.launch {
+                            Toast.makeText(
+                                this@TaskActivity,
+                                "Info: " + viewModel.getShopItem(it).name + " id:" + viewModel.getShopItem(
+                                    it
+                                ).id + " count: " + viewModel.getShopItem(it).count + " status: " + viewModel.getShopItem(
+                                    it
+                                ).enabled,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
                     } catch (e: RuntimeException) {
                         Toast.makeText(
                             this@TaskActivity,
@@ -114,8 +118,10 @@ class TaskActivity : AppCompatActivity(R.layout.activity_task) {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val item = tasksAdapter.currentList[viewHolder.absoluteAdapterPosition]
-                viewModel.deleteItem(item)
+                lifecycleScope.launch {
+                    val item = tasksAdapter.currentList[viewHolder.absoluteAdapterPosition]
+                    viewModel.deleteItem(item)
+                }
             }
         }
         val itemTouchHelper = ItemTouchHelper(callback)

@@ -4,7 +4,7 @@ import kg.geektech.shoplistapp.domain.models.ShopItem
 
 class EditShopItemUseCase (private val repository: ShopListRepository) {
 
-    fun editShopItem(shopItem: ShopItem){
+    suspend fun editShopItem(shopItem: ShopItem){
         repository.editShopItem(shopItem)
     }
 }

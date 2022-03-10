@@ -2,4 +2,8 @@
     <string name="app_name">ShopListApp</string>
     <string name="search">Search</string>
     <string name="detail">DETAIL</string>
+    <string name="product">Product</string>
+    <string name="amount">Amount</string>
+    <string name="random_add">random add</string>
+    <string name="add">add</string>
 </resources>

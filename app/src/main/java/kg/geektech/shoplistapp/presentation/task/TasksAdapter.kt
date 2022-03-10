@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kg.geektech.shoplistapp.R
-import kg.geektech.shoplistapp.callbacks.ShopItemDiffCallback
+import kg.geektech.shoplistapp.presentation.callbacks.ShopItemDiffCallback
 import kg.geektech.shoplistapp.domain.models.ShopItem
 
 class TasksAdapter : ListAdapter<ShopItem, TasksAdapter.ViewHolder>(ShopItemDiffCallback()) {
