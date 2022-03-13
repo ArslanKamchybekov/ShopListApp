@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kg.geektech.shoplistapp.R
 import kg.geektech.shoplistapp.databinding.ActivityDetailBinding
 import kg.geektech.shoplistapp.domain.models.ShopItem
 import kg.geektech.shoplistapp.presentation.MainViewModel
 import kotlin.random.Random
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity(R.layout.activity_detail) {
 
     private val binding: ActivityDetailBinding by viewBinding()
@@ -24,10 +26,6 @@ class DetailActivity : AppCompatActivity(R.layout.activity_detail) {
     }
 
     private fun initListeners() {
-        binding.btnAddRandom.setOnClickListener {
-            viewModel.addShopItem(randomShopItem())
-            finish()
-        }
         binding.btnAdd.setOnClickListener {
             viewModel.addShopItem(addShopItem() as ShopItem)
             finish()
@@ -43,23 +41,6 @@ class DetailActivity : AppCompatActivity(R.layout.activity_detail) {
             Toast.makeText(this, "Заполните поля", Toast.LENGTH_SHORT).show()
         }
     }
-
-    private fun randomShopItem(): ShopItem {
-        return ShopItem(
-            getRandomString(5),
-            (0..10).random(),
-            Random.nextBoolean(),
-            (0..20).random()
-        )
-    }
-
-    private fun getRandomString(length: Int): String {
-        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
-        return (1..length)
-            .map { allowedChars.random() }
-            .joinToString("")
-    }
-
 
     companion object {
         fun start(context: Context) {

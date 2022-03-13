@@ -13,12 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kg.geektech.shoplistapp.R
 import kg.geektech.shoplistapp.databinding.ActivityTaskBinding
 import kg.geektech.shoplistapp.presentation.MainViewModel
 import kg.geektech.shoplistapp.presentation.detail.DetailActivity
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TaskActivity : AppCompatActivity(R.layout.activity_task) {
 
     private val binding: ActivityTaskBinding by viewBinding()
